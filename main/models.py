@@ -7,6 +7,9 @@ class Video(models.Model):
   name = models.CharField(max_length=100)
   url = models.CharField(max_length=100)
 
+  class Meta:
+      ordering = ['name']
+
   def get_absolute_url(self):
     """Returns the url to access a particular instance of Video."""
     return reverse('video-detail-view', args=[str(self.id)])
