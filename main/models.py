@@ -10,7 +10,7 @@ class Video(models.Model):
   date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
 
-  tags = models.ManyToManyField("Tag")
+  tags = models.ManyToManyField("Tag", blank=True)
 
   class Meta:
       ordering = ['name']
