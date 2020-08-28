@@ -21,7 +21,7 @@ def index(request):
 
 class VideoListView(generic.ListView):
     model = Video
-    paginate_by = 10
+    paginate_by = 8
 
 class VideoDetailView(generic.DetailView):
     model = Video
