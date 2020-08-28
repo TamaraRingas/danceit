@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Tag List</h1>
+{% if tag_list %}
+<ul>
+  {% for tag in tag_list %}
+  <li>
+    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> ({{tag.date_created}})
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no tags herey.</p>
+{% endif %}
+{% endblock %}
