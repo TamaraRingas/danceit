@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone 
+from django.contrib.auth.models import User
 
 class Video(models.Model):
   """Represents a Youtube video uploaded to our database, derived from the Model class."""
@@ -18,6 +19,9 @@ class Video(models.Model):
   def get_absolute_url(self):
     """Returns the url to access a particular instance of Video."""
     return reverse('video-detail', args=[str(self.id)])
+
+  def make_embed_url(self):
+    return self.url + 'some text'
 
   def __str__(self):
     """String representation of the Video object."""
