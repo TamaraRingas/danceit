@@ -18,3 +18,6 @@ class VideoListView(generic.ListView):
 
 class VideoDetailView(generic.DetailView):
     model = Video
+
+class TagListView(generic.ListView):
+  model = Tag
