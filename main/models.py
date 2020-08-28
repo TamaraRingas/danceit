@@ -35,7 +35,7 @@ class Tag(models.Model):
 
   def get_absolute_url(self):
     """Returns the url to access a particular Tag."""
-    return reverse('tag-detail-view', args=[str(self.id)])
+    return reverse('tag-detail', args=[str(self.id)])
 
   def __str__(self):
     """String representation of the Tag object."""
