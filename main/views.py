@@ -15,12 +15,14 @@ def index(request):
 
 class VideoListView(generic.ListView):
     model = Video
+    paginate_by = 10
 
 class VideoDetailView(generic.DetailView):
     model = Video
 
 class TagListView(generic.ListView):
   model = Tag
+  paginate_by = 10
 
 class TagDetailView(generic.DetailView):
   model = Tag
