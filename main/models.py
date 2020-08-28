@@ -17,7 +17,7 @@ class Video(models.Model):
 
   def get_absolute_url(self):
     """Returns the url to access a particular instance of Video."""
-    return reverse('video-detail-view', args=[str(self.id)])
+    return reverse('video-detail', args=[str(self.id)])
 
   def __str__(self):
     """String representation of the Video object."""
