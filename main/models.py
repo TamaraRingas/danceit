@@ -1,13 +1,14 @@
 from django.db import models
 from django.urls import reverse
-import django.utils import timezone 
+from django.utils import timezone 
 
 class Video(models.Model):
   """Represents a Youtube video uploaded to our database, derived from the Model class."""
 
   name = models.CharField(max_length=100)
   url = models.CharField(max_length=100)
-  date_created = models.DateTimeField(default=timezone.localtime()) """Local time used because users will be all over the world"""
+  date_created = models.DateTimeField(default=timezone.now) 
+  """Local time used because users will be all over the world"""
 
   #tag = models.ManyToManyField("Tag")
 
@@ -26,7 +27,7 @@ class Tag(models.Model):
   """Represents a Video Tag, derived from the Model class."""
 
   name = models.CharField(max_length=20)
-  date_created = models.DateTimeField(default=timezone.localtime())
+  date_created = models.DateTimeField(default=timezone.now)
 
   #video = models.ManyToManyField(Video)
   class Meta:
