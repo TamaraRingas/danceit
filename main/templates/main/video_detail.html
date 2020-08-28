@@ -4,6 +4,6 @@
 <h1>Video: {{ video.name }}</h1>
 
 <p><strong>Date Uploaded:</strong> {{ video.date_created }}</p>
-<p><strong>Tags:</strong> {{ book.genre.all|join:", " }}</p>
+<p><strong>Tags:</strong> {{ video.tags.all|join:", " }}</p>
 
 {% endblock %}
