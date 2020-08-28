@@ -15,3 +15,6 @@ def index(request):
 
 class VideoListView(generic.ListView):
     model = Video
+
+class VideoDetailView(generic.DetailView):
+  model = Video
