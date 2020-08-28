@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 from main.models import Video, Tag
 
 def index(request):
@@ -11,3 +12,6 @@ def index(request):
   }
 
   return render(request, 'index.html', context=context)
+
+class VideoListView(generic.ListView):
+    model = Video
