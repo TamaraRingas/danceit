@@ -8,3 +8,5 @@ urlpatterns = [
     path('tags/', views.TagListView.as_view(), name='tags'),
     path('tag/<int:pk>', views.TagDetailView.as_view(), name='tag-detail'),
 ]
+
+
