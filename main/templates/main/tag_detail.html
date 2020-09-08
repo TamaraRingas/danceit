@@ -5,6 +5,6 @@
 
 
 <p><strong>Tag Category:</strong> {{ tag.types.all|join:", " }}</p>
-<p><strong>Linked Videos:</strong> <a href="{{ tag.videos.get_absolute_url }}">{{ tag.videos.all|join:", " }} </a> </p>
+<p><strong>Linked Videos:</strong> {{ tag.videos.all|join:", " }}  </p>
 
 {% endblock %}
