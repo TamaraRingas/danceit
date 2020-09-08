@@ -7,7 +7,7 @@ class Video(models.Model):
 
   name = models.CharField(max_length=100)
   url = models.CharField(max_length=100)
-  date_created = models.DateTimeField(default=timezone.now) 
+  #date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
 
   tags = models.ManyToManyField("Tag", blank=True)
