@@ -1,10 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Tag Details</h1>
+<h1>{{ tag.name }} Details</h1>
 
-<p><strong>Tag:</strong> {{ tag.name }}</p>
-<p><strong>Date Uploaded:</strong> {{ tag.date_created }}</p>
+
+<p><strong>Tag Category:</strong> {{ tag.types.all|join:", " }}</p>
 <p><strong>Linked Videos:</strong> {{ tag.videos.all|join:", " }}</p>
 
 {% endblock %}
