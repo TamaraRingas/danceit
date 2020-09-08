@@ -33,6 +33,7 @@ class Tag(models.Model):
   #date_created = models.DateTimeField(default=timezone.now)
 
   videos = models.ManyToManyField(Video)
+  types = models.ManyToManyField("Type")
   class Meta:
       ordering = ['name']
 
@@ -44,4 +45,20 @@ class Tag(models.Model):
     """String representation of the Tag object."""
     return self.name
 
+class Type(models.Model):
+  """ Categories of Tags """
+  name = models.CharField(max_length=20)
 
+  #tags = models.ManyToManyField('Tag')
+
+  class Meta:
+      ordering = ['name']
+
+  def get_absolute_url(self):
+    """Returns the url to access a particular Tag."""
+    return reverse('type-detail', args=[str(self.id)])
+
+  def __str__(self):
+    """String representation of the Type object."""
+    return self.name
+  
