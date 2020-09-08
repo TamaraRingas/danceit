@@ -30,7 +30,7 @@ class Tag(models.Model):
   """Represents a Video Tag, derived from the Model class."""
 
   name = models.CharField(max_length=20)
-  date_created = models.DateTimeField(default=timezone.now)
+  #date_created = models.DateTimeField(default=timezone.now)
 
   videos = models.ManyToManyField(Video)
   class Meta:
