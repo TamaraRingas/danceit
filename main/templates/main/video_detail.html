@@ -4,7 +4,6 @@
 {% load filters %}
 <h1>Video: {{ video.name }}</h1>
 
-<p><strong>URL:</strong> {{video.url}}</p>
 <p><strong>Tags: {{ video.tags.all|join:", " }}</strong></p>
 <iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
