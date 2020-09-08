@@ -6,7 +6,7 @@
 <ul>
   {% for tag in tag_list %}
   <li>
-    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> ({{tag.date_created}})
+    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
   </li>
   {% endfor %}
 </ul>
