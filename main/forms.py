@@ -12,13 +12,14 @@ class AddVideoForm(forms.ModelForm):
             'tags': 'Tags',
         }
 
+
 class AddTagFrom(forms.ModelForm):
   class Meta:
     model = Tag
     fields = ('name', 'videos', 'types', )
     labels = {
-      'name': 'Tag Name',
-      'videos': 'Videos',
-      'tags': 'Tags',
+        'name': 'Tag Name',
+        'videos': 'Videos',
+        'tags': 'Tags',
     }
 
