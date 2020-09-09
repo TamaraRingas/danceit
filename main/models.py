@@ -6,7 +6,7 @@ class Video(models.Model):
   """Represents a Youtube video uploaded to our database, derived from the Model class."""
 
   name = models.CharField(max_length=100)
-  url = models.CharField(max_length=100)
+  url = models.URLField()
   #date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
 
