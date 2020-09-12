@@ -3,8 +3,10 @@
 {% block content %}
 <h1>{{ tag.name }} </h1>
 
-
 <p><strong>Tag Category:</strong> {{ tag.types.all|join:", " }}</p>
-<p><strong>Linked Videos:</strong> {{ tag.videos.all|join:", " }}  </p>
+<strong>Linked Videos:</strong>
+{% for video in tag.videos.all %}
+<a href="{{tag.get_absolute_url}}">{{video.name}},</a>
+{% endfor %}
 
 {% endblock %}
