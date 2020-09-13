@@ -26,19 +26,27 @@ def index(request):
 
   return render(request, 'index.html', context=context)
 
-# def add_video(request, pk):
-#   video = get_object_or_404(Video, pk=pk)
 
-#   if request.method == "POST":
-#     # Create a form instance and populate it with data from the request (binding)
-#     form = AddVideoForm(request.POST)
-#     if form.is_valid():
-      
+def video(request, pk):
+  video = Video.objects.get(id=pk)  
+  videos = video.order_set.all()
+  num_videos = Video.objects.all().count()
+
+  myFilter = VideoFilter(request.GET, queryset=videos)
+  videos = myFilter.qs 
+
+  context = { 'name':name,
+              'url':url,
+              'tags':tags,
+              'myFilter':myFilter, 
+              }
+  return render(request, 'main/video-list.html',context)
+
 
 class VideoListView(generic.ListView):
     model = Video
     paginate_by = 10
-    myFilter = VideoFilter()
+    
 
 class VideoDetailView(generic.DetailView):
     model = Video
