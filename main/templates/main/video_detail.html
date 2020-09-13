@@ -6,6 +6,6 @@
 <p> <strong>Tags: </strong> 
 {% for tag in video.tags.all %}
 <a href="{{tag.get_absolute_url}}">{{tag.name}},</a>
-{% endfor %}</p>
+{% endfor %} </p>
 <iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 {% endblock content %}

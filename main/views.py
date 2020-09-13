@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.views import generic
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse 
 from main.models import Video, Tag
+from main.forms import AddVideoForm 
 
 def index(request):
   num_videos = Video.objects.all().count()
@@ -18,6 +22,15 @@ def index(request):
   }
 
   return render(request, 'index.html', context=context)
+
+# def add_video(request, pk):
+#   video = get_object_or_404(Video, pk=pk)
+
+#   if request.method == "POST":
+#     # Create a form instance and populate it with data from the request (binding)
+#     form = AddVideoForm(request.POST)
+#     if form.is_valid():
+      
 
 class VideoListView(generic.ListView):
     model = Video
