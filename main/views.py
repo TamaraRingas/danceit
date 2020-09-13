@@ -53,3 +53,15 @@ class TypeListView(generic.ListView):
 
 class TypeDetailView(generic.DetailView):
   model = Type
+
+class VideoCreate(CreateView):
+  model = Video
+  fields = '__all__'
+
+class VideoUpdate(UpdateView):
+  model = Video
+  fields = '__all__'
+
+class VideoDelete(DeleteView):
+  model = Video
+  success_url = reverse_lazy('videos')
