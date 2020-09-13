@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse 
-from main.models import Video, Tag
+from django.urls import reverse_lazy
+from main.models import Video, Tag, Type
 from main.forms import AddVideoForm 
 
 def index(request):
@@ -46,3 +48,8 @@ class TagListView(generic.ListView):
 class TagDetailView(generic.DetailView):
   model = Tag
 
+class TypeListView(generic.ListView):
+  model = Type 
+
+class TypeDetailView(generic.DetailView):
+  model = Type
