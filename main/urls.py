@@ -12,6 +12,11 @@ urlpatterns = [
          views.VideoUpdate.as_view(), name='video_update'),
     path('video/<int:pk>/delete/',
          views.VideoDelete.as_view(), name='video_delete'),
+    path('tag/create/', views.TagCreate.as_view(), name='tag_create'),
+    path('tag/<int:pk>/update/',
+         views.TagUpdate.as_view(), name='tag_update'),
+    path('tag/<int:pk>/delete/',
+         views.TagDelete.as_view(), name='tag_delete'),
 ]
 
 
