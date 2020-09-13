@@ -38,6 +38,7 @@ def index(request):
 class VideoListView(generic.ListView):
     model = Video
     paginate_by = 10
+    myFilter = VideoFilter()
 
 class VideoDetailView(generic.DetailView):
     model = Video
