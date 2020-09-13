@@ -36,19 +36,31 @@ class AddVideoForm(ModelForm):
         }
 
     
+class AddTagFrom(forms.ModelForm):
+    data = self.cleaned_data['name']
 
-      
+     if len(data) > 100:
+          raise ValidationError(_('Invalid Video Name'))
 
+      return data
 
-# class AddTagFrom(forms.ModelForm):
-#     class Meta:
-#         model = Tag
-#         fields = ('name', 'videos', 'types', )
-#         labels = {
-#             'name': 'Tag Name',
-#             'videos': 'Videos',
-#             'types': 'Categories',
-#         }
+    def clean_url(self):
+        video_data = self.cleaned_data['videos']
+        #
+        return url_data
+
+    def clean_tags(self):
+        type_data = self.cleaned_data['types']
+        #
+        return tag_data
+    class Meta:
+        model = Tag
+        fields = ('name', 'videos', 'types', )
+        labels = {
+            'name': 'Tag Name',
+            'videos': 'Videos',
+            'types': 'Categories',
+        }
 
 
 # class AddTypeForm(forms.ModelForm):

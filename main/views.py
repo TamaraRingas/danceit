@@ -65,3 +65,15 @@ class VideoUpdate(UpdateView):
 class VideoDelete(DeleteView):
   model = Video
   success_url = reverse_lazy('videos')
+
+class TagCreate(CreateView):
+  model = Tag
+  fields = '__all__'
+
+class TagUpdate(UpdateView):
+  model = Tag 
+  fields = '__all__'
+
+class TagDelete(DeleteView):
+  model = Tag
+  success_url = reverse_lazy('tags')
