@@ -1,23 +1,41 @@
 from django import forms
+from django.forms import ModelForm 
+from django.db import models
+from django.core import validators 
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from main.models import Video, Tag, Type
 
+class AddVideoForm(ModelForm):
 
-class AddVideoForm(forms.ModelForm):
-    name = forms.CharField(required=True)
-    url = forms.URLField(required=True)
+    def clean_name(self):
+      data = self.cleaned_data['name']
+
+      if len(data) > 100: 
+          raise ValidationError(_('Invalid Video Name'))
+      
+      return data
+
+    def clean_url(self):
+        url_data = self.cleaned_data['url']
+        #
+        return url_data
+        
+    def clean_tags(self):
+        tag_data = self.cleaned_data['tags']
+        #
+        return tag_data
+
     class Meta:
         model = Video
-        fields = ('name', 'url', 'tags', )
+        fields = ['name', 'url', 'tags', ]
         labels = {
             'name': 'Video Name',
             'url': 'Video URL',
             'tags': 'Tags',
         }
 
-    def clean_name(self):
-      data = self.cleaned_data['name']
+    
 
       
 
