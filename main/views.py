@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
 from main.forms import AddVideoForm 
+from .filters import VideoFilter
 
 def index(request):
   num_videos = Video.objects.all().count()
