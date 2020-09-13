@@ -3,6 +3,7 @@
 {% block content %}
 {% load filters %}
 <h1>Video: {{ video.name }}</h1>
+{% comment %} <p><a href="{% url 'video_update' pk={{video.get_absolute_url}} %}">Update Video </a></p> {% endcomment %}
 <p> <strong>Tags: </strong> 
 {% for tag in video.tags.all %}
 <a href="{{tag.get_absolute_url}}">{{tag.name}},</a>

@@ -2,6 +2,7 @@
 
 {% block content %}
 <h1>Videos List</h1>
+<a href="{% url 'video_create'%}">Add Video</a>
 {% if video_list %}
 <ul>
   {% for video in video_list %}
