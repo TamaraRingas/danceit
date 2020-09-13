@@ -3,9 +3,9 @@
 {% block content %}
 {% load filters %}
 <h1>Video: {{ video.name }}</h1>
-<strong>Tags: </strong>
+<p> <strong>Tags: </strong> 
 {% for tag in video.tags.all %}
 <a href="{{tag.get_absolute_url}}">{{tag.name}},</a>
-{% endfor %}
+{% endfor %}</p>
 <iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 {% endblock content %}
