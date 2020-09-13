@@ -3,6 +3,12 @@
 {% block content %}
 <h1>Videos List</h1>
 <a href="{% url 'video_create'%}">Add Video</a>
+<div>
+  <form method="get">
+  <button class="btn btn-primary" type="submit">
+  Search </button>
+  </form>
+</div>
 {% if video_list %}
 <ul>
   {% for video in video_list %}
