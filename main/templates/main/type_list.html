@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Tag Categories List</h1>
+
+{% comment %} <a href="{% url 'type_create'%}">Add Category</a> {% endcomment %}
+
+{% if type_list %}
+<ul>
+  {% for type in type_list %}
+  <li>
+    <a href="{{ type.get_absolute_url }}">{{ type.name }}</a> 
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>There are no categories here.</p>
+{% endif %}
+{% endblock %}
