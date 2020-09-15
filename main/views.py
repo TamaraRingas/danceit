@@ -70,7 +70,7 @@ class VideoCreate(CreateView):
 
 class VideoUpdate(UpdateView):
   model = Video
-  fields = 'name'
+  fields = '__all__'
 
 class VideoDelete(DeleteView):
   model = Video
