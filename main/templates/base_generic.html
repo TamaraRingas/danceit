@@ -19,8 +19,8 @@
         {% block sidebar %}
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'videos' %}">Videos</a></li>
-          <li><a href="{% url 'tags' %}">Tags</a></li>
+          <li><a href="{% url 'videos' %}"> All Videos</a></li>
+          <li><a href="{% url 'tags' %}">All Tags</a></li>
           <li><a href="{% url 'types' %}">Tag Categories</a></li>
           
           {% if user.is_authenticated %}
