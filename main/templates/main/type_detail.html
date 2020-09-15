@@ -2,12 +2,10 @@
 
 {% block content %}
 <h1>Category: {{ type.name }} </h1>
+{{type.tags.all}}
 <strong>Linked Tags:</strong>
 {% for tag in type.tags.all %}
+{{tag.name}}
 <a href="{{tag.get_absolute_url}}">{{tag.name}},</a>
-{% endfor %}
-<strong>Linked Videos:</strong>
-{% for video in type.videos.all %}
-<a href="{{video.get_absolute_url}}">{{video.name}},</a>
 {% endfor %}
 {% endblock %}
