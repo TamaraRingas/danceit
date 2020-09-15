@@ -9,7 +9,7 @@ class Video(models.Model):
   url = models.URLField()
   #date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
-
+  search = models.CharField(max_length=20, null=True) 
   tags = models.ManyToManyField("Tag", blank=True)
 
   class Meta:
@@ -34,6 +34,7 @@ class Tag(models.Model):
 
   videos = models.ManyToManyField(Video)
   types = models.ManyToManyField("Type")
+  
   class Meta:
       ordering = ['name']
 
@@ -49,7 +50,7 @@ class Type(models.Model):
   """ Categories of Tags """
   name = models.CharField(max_length=20)
 
-  #tags = models.ManyToManyField('Tag')
+  tags = models.ManyToManyField(Tag)
 
   class Meta:
       ordering = ['name']
