@@ -21,6 +21,8 @@
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'videos' %}">Videos</a></li>
           <li><a href="{% url 'tags' %}">Tags</a></li>
+          <li><a href="{% url 'types' %}">Tag Categories</a></li>
+          
           {% if user.is_authenticated %}
           <li>User: {{ user.get_username }}</li>
           
