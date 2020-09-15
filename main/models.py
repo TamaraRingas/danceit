@@ -35,6 +35,7 @@ class Tag(models.Model):
 
   videos = models.ManyToManyField(Video)
   types = models.ManyToManyField("Type")
+  user = models.ManyToManyField(User, blank=True)
   
   class Meta:
       ordering = ['name']
