@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Category: {{ type.name }} </h1>
+<strong>Linked Tags:</strong>
+{% for tag in type.tags.all %}
+<a href="{{vtag.get_absolute_url}}">{{tag.name}},</a>
+{% endfor %}
+<strong>Linked Videos:</strong>
+{% for video in type.videos.all %}
+<a href="{{video.get_absolute_url}}">{{video.name}},</a>
+{% endfor %}
+{% endblock %}
