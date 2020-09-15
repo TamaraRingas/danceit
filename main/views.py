@@ -88,3 +88,13 @@ class TagUpdate(UpdateView):
 class TagDelete(DeleteView):
   model = Tag
   success_url = reverse_lazy('tags')
+
+
+class UserVideosListView(LoginRequiredMixin, generic.ListView):
+  model = Video
+  template_name = 'main/video_followed_by_user.html'
+  paginate_by = 20
+
+  def get_queryset(self):
+      return Video.objects.filter(user=self.request.user)
+
