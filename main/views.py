@@ -92,7 +92,7 @@ class TagDelete(DeleteView):
 
 class UserVideosListView(LoginRequiredMixin, generic.ListView):
   model = Video
-  template_name = 'main/video_followed_by_user.html'
+  template_name = 'main/videos_by_user.html'
   paginate_by = 20
 
   def get_queryset(self):
