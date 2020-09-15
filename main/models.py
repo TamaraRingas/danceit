@@ -11,6 +11,7 @@ class Video(models.Model):
   """Local time used because users will be all over the world"""
   search = models.CharField(max_length=20, null=True) 
   tags = models.ManyToManyField("Tag", blank=True)
+  user = models.ManyToManyField(User, blank=True) 
 
   class Meta:
       ordering = ['name']
