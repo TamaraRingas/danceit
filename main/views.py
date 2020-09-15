@@ -98,3 +98,11 @@ class UserVideosListView(LoginRequiredMixin, generic.ListView):
   def get_queryset(self):
       return Video.objects.filter(user=self.request.user)
 
+
+class UserTagListView(LoginRequiredMixin, generic.ListView):
+  model = Tag
+  tamplate_name = 'main/tags_by_user.html'
+  paginate_by = 20
+
+  def get_queryset(self):
+      return Tag.objects.filter(user=self.request.user)
