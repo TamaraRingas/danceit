@@ -5,4 +5,7 @@
 <p>Welcome to DanceIT, a Dance Video Information Management website developed by the University of Cape Town.</p>
 <h2>Content</h2>
 <p> Here will be some videos and information.</p>
+{% comment %} {% for video in video.objects.all%}
+<iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+{% endfor %} {% endcomment %}
 {% endblock %}
