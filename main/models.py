@@ -9,7 +9,7 @@ class Video(models.Model):
   url = models.URLField()
   #date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
-  search = models.CharField(max_length=20, null=True) 
+  search = models.CharField(max_length=20, null=True, blank=True) 
   tags = models.ManyToManyField("Tag", blank=True)
   user = models.ManyToManyField(User, blank=True) 
 
