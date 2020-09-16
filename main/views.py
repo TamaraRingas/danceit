@@ -99,9 +99,9 @@ class UserVideosListView(LoginRequiredMixin, generic.ListView):
       return Video.objects.filter(user=self.request.user)
 
 
-class UserTagListView(LoginRequiredMixin, generic.ListView):
+class UserTagsListView(LoginRequiredMixin, generic.ListView):
   model = Tag
-  tamplate_name = 'main/tags_by_user.html'
+  tamplate_name = 'main/videos_by_user.html'
   paginate_by = 20
 
   def get_queryset(self):

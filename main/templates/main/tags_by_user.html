@@ -1,16 +1,12 @@
 {% extends "base_generic.html" %}
-
 {% block content %}
     <h1>Followed Tags</h1>
-
-    {% if tags_by_user %}
+    {% if tag_list %}
     <ul>
-
-      {% for tag in tags_by_user %} 
-        <a href="{% url 'tag-detail' tag.pk %}">{{tag.name}}</a>)        
+      {% for tag in tag_list%} 
+        <a href="{% url 'tag-detail' tag.pk %}">{{tag.name}}</a>        
       {% endfor %}
     </ul>
-
     {% else %}
       <p>There are no followed tags.</p>
     {% endif %}       

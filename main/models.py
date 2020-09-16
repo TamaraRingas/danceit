@@ -11,7 +11,8 @@ class Video(models.Model):
   """Local time used because users will be all over the world"""
   # search = models.CharField(max_length=20, null=True, blank=True) 
   tags = models.ManyToManyField("Tag", blank=True)
-  user = models.ManyToManyField(User, blank=True) 
+  user = models.ForeignKey(
+      User, on_delete=models.SET_NULL, null=True, blank=True)
 
   class Meta:
       ordering = ['name']
@@ -35,7 +36,8 @@ class Tag(models.Model):
 
   videos = models.ManyToManyField(Video)
   types = models.ManyToManyField("Type")
-  user = models.ManyToManyField(User, blank=True)
+  user = models.ForeignKey(
+      User, on_delete=models.SET_NULL, null=True, blank=True)
   
   class Meta:
       ordering = ['name']

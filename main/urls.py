@@ -20,7 +20,7 @@ urlpatterns = [
     path('tag/<int:pk>/delete/',
          views.TagDelete.as_view(), name='tag_delete'),
     path('myvideos/', views.UserVideosListView.as_view(), name='my-videos'),
-    path('mytags/', views.UserTagListView.as_view(), name='my-tags'),
+    path('mytags/', views.UserTagsListView.as_view(), name='my-tags'),
 ]
 
 
