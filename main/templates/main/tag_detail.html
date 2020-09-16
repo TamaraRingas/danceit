@@ -3,7 +3,7 @@
 {% block content %}
 <h1>{{ tag.name }} </h1>
 
-<p><strong>Tag Category:</strong>
+<p><strong>Tag Categories:</strong>
 {% for type in tag.types.all %}
 <a href="{{type.get_absolute_url}}">{{type.name}},</a>
 {% endfor %}</p>
