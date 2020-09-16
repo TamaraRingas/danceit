@@ -7,8 +7,10 @@
 {% for type in tag.types.all %}
 <a href="{{type.get_absolute_url}}">{{type.name}},</a>
 {% endfor %}</p>
-<strong>Linked Videos:</strong>
+<p><strong>Linked Videos:</strong>
 {% for video in tag.videos.all %}
 <a href="{{video.get_absolute_url}}">{{video.name}},</a>
-{% endfor %}
+{% endfor %} </p>
+<a href="{% url 'tag_update' pk=tag.pk %}">Update Tag </a>
+<p><a href="{% url 'tag_delete' pk=tag.pk %}">Delete Tag </a></p>
 {% endblock %}
