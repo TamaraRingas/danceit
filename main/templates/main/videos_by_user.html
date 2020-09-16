@@ -2,11 +2,9 @@
 
 {% block content %}
     <h1>Followed Videos</h1>
-
     {% if videos_by_user %}
     <ul>
-
-      {% for videos in videos_by_user %} 
+      {% for video in videos_by_user %} 
         <a href="{% url 'video-detail' video.pk %}">{{video.name}}</a>        
       {% endfor %}
     </ul>
