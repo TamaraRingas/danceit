@@ -101,7 +101,7 @@ class UserVideosListView(LoginRequiredMixin, generic.ListView):
 
 class UserTagsListView(LoginRequiredMixin, generic.ListView):
   model = Tag
-  tamplate_name = 'main/videos_by_user.html'
+  template_name = 'main/tags_by_user.html'
   paginate_by = 20
 
   def get_queryset(self):
