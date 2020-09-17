@@ -18,17 +18,17 @@
       <div class="col-sm-2">
         {% block sidebar %}
         <ul class="sidebar-nav" style="background-color:#c9c3bd">
-          <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'videos' %}"> All Videos</a></li>
-          <li><a href="{% url 'tags' %}">All Tags</a></li>
-          <li><a href="{% url 'types' %}">Tag Categories</a></li>
+          <li><a href="{% url 'index' %}" style="color: #ffffff">Home</a></li>
+          <li><a href="{% url 'videos' %}"style="color: #ffffff"> All Videos</a></li>
+          <li><a href="{% url 'tags' %}"style="color: #ffffff">All Tags</a></li>
+          <li><a href="{% url 'types' %}"style="color: #ffffff">Tag Categories</a></li>
           {% if user.is_authenticated %}
           <li>User: {{ user.get_username }}</li>
-          <li><a href="{% url 'my-videos'%}">My Videos </a></li>
-          <li><a href="{% url 'my-tags'%}">My Tags </a></li>
-          <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+          <li><a href="{% url 'my-videos'%}"style="color: #ffffff">My Videos </a></li>
+          <li><a href="{% url 'my-tags'%}"style="color: #ffffff">My Tags </a></li>
+          <li><a href="{% url 'logout'%}?next={{request.path}}"style="color: #ffffff">Logout</a></li>
           {% else %}
-          <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+          <li><a href="{% url 'login'%}?next={{request.path}}"style="color: #ffffff">Login</a></li>
           {% endif %}
         </ul>
         
