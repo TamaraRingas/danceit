@@ -8,13 +8,13 @@ Search Videos
 <button class="btn btn-primary" type="submit">
 Search </button>
 </form>
-<a href="{% url 'video_create'%}">Add Video</a>
+<a href="{% url 'video_create'%}"style="color: #ffffff">Add Video</a>
 
 {% if video_list %}
 <ul>
   {% for video in video_list %}
   <li>
-    <a href="{{ video.get_absolute_url }}">{{ video.name }}</a> 
+    <a href="{{ video.get_absolute_url }}"style="color: #ffffff">{{ video.name }}</a> 
   </li>
   {% endfor %}
 </ul>
