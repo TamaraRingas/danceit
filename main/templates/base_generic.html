@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body style="background-color:#716e6a">
+<body style="background-color:#c9c3bd">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2">
         {% block sidebar %}
-        <ul class="sidebar-nav" style="background-color:#c9c3bd">
+        <ul class="sidebar-nav" style="background-color:#716e6a">
           <li><a href="{% url 'index' %}" style="color: #ffffff">Home</a></li>
           <li><a href="{% url 'videos' %}"style="color: #ffffff"> All Videos</a></li>
           <li><a href="{% url 'tags' %}"style="color: #ffffff">All Tags</a></li>
