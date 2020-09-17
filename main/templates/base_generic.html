@@ -12,20 +12,16 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 
-<body>
+<body style="background-color:#716e6a">
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2">
         {% block sidebar %}
-        <ul class="sidebar-nav">
+        <ul class="sidebar-nav" style="background-color:#c9c3bd">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'videos' %}"> All Videos</a></li>
           <li><a href="{% url 'tags' %}">All Tags</a></li>
           <li><a href="{% url 'types' %}">Tag Categories</a></li>
-           
-        </ul>
-        <footer>
-        <ul>
           {% if user.is_authenticated %}
           <li>User: {{ user.get_username }}</li>
           <li><a href="{% url 'my-videos'%}">My Videos </a></li>
@@ -35,7 +31,7 @@
           <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
           {% endif %}
         </ul>
-        </footer>
+        
         {% endblock %}
       </div>
       
