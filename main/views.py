@@ -89,6 +89,9 @@ class TagDelete(DeleteView):
   model = Tag
   success_url = reverse_lazy('tags')
 
+class TypeCreate(CreateView):
+  model = Type
+  fields = '__all__'
 
 class UserVideosListView(LoginRequiredMixin, generic.ListView):
   model = Video
