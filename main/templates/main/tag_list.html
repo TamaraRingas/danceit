@@ -2,12 +2,12 @@
 
 {% block content %}
 <h1>Tags List</h1>
-<a href="{% url 'tag_create'%}">Add Tag</a>
+<a href="{% url 'tag_create'%}"style="color: #ffffff">Add Tag</a>
 {% if tag_list %}
 <ul>
   {% for tag in tag_list %}
   <li>
-    <a href="{{ tag.get_absolute_url }}">{{ tag.name }} </a> ({{tag.types.all|join:", "}})
+    <a href="{{ tag.get_absolute_url }}"style="color: #ffffff">{{ tag.name }} </a> ({{tag.types.all|join:", "}})
   </li>
   {% endfor %}
 </ul>

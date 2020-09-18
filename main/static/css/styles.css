@@ -1,5 +1,7 @@
+
 .sidebar-nav {
+    color: #777799; 
     margin-top: 20px;
     padding: 0;
-    list-style: none;
+    list-style: lower-greek;
 }
