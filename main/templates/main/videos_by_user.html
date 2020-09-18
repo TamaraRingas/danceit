@@ -5,7 +5,7 @@
     {% if video_list %}
     <ul>
       {% for video in video_list%} 
-        <a href="{% url 'video-detail' video.pk %}">{{video.name}}</a>        
+        <a href="{% url 'video-detail' video.pk %}"style="color: #ffffff">{{video.name}}</a>        
       {% endfor %}
     </ul>
     {% else %}

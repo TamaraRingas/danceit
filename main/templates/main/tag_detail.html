@@ -5,12 +5,12 @@
 
 <p><strong>Tag Categories:</strong>
 {% for type in tag.types.all %}
-<a href="{{type.get_absolute_url}}">{{type.name}},</a>
+<a href="{{type.get_absolute_url}}"style="color: #ffffff">{{type.name}},</a>
 {% endfor %}</p>
 <p><strong>Linked Videos:</strong>
 {% for video in tag.videos.all %}
-<a href="{{video.get_absolute_url}}">{{video.name}},</a>
+<a href="{{video.get_absolute_url}}"style="color: #ffffff">{{video.name}},</a>
 {% endfor %} </p>
-<a href="{% url 'tag_update' pk=tag.pk %}">Update Tag </a>
-<p><a href="{% url 'tag_delete' pk=tag.pk %}">Delete Tag </a></p>
+<a href="{% url 'tag_update' pk=tag.pk %}"style="color: #ffffff">Update Tag </a>
+<p><a href="{% url 'tag_delete' pk=tag.pk %}"style="color: #ff0000">Delete Tag </a></p>
 {% endblock %}

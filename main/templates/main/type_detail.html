@@ -4,6 +4,6 @@
 <h1>Category: {{ type.name }} </h1>
 <strong>Linked Tags:</strong>
 {% for tag in type.tags.all %}
-<a href="{{tag.get_absolute_url}}">{{tag.name}},</a>
+<a href="{{tag.get_absolute_url}}"style="color: #ffffff">{{tag.name}},</a>
 {% endfor %}
 {% endblock %}
