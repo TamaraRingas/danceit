@@ -4,7 +4,7 @@
     {% if tag_list %}
     <ul>
       {% for tag in tag_list%} 
-        <a href="{% url 'tag-detail' tag.pk %}"style="color: #ffffff">{{tag.name}}</a>        
+        <a href="{% url 'tag-detail' tag.pk %}">{{tag.name}}</a>        
       {% endfor %}
     </ul>
     {% else %}

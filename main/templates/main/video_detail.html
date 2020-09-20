@@ -5,9 +5,9 @@
 <h1>Video: {{ video.name }}</h1>
 <p> <strong>Tags: </strong> 
 {% for tag in video.tags.all %}
-<a href="{{tag.get_absolute_url}}"style="color: #ffffff">{{tag.name}},</a>
+<a href="{{tag.get_absolute_url}}">{{tag.name}},</a>
 {% endfor %} </p> 
 <iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<p><a href="{% url 'video_update' pk=video.pk %}"style="color: #ffffff">Update Video </a></p>
-<p><a href="{% url 'video_delete' pk=video.pk %}"style="color: #ff0000">Delete Video </a></p>
+<p><a href="{% url 'video_update' pk=video.pk %}">Update Video </a></p>
+<p><a href="{% url 'video_delete' pk=video.pk %}">Delete Video </a></p>
 {% endblock content %}

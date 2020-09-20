@@ -3,13 +3,13 @@
 {% block content %}
 <h1>Tag Categories List</h1>
 
-<a href="{% url 'type_create'%}"style="color: #ffffff">Add Tag Category</a> 
+<a href="{% url 'type_create'%}">Add Tag Category</a> 
 
 {% if type_list %}
 <ul>
   {% for type in type_list %}
   <li>
-    <a href="{{ type.get_absolute_url }}"style="color: #ffffff">{{ type.name }}</a> 
+    <a href="{{ type.get_absolute_url }}">{{ type.name }}</a> 
   </li>
   {% endfor %}
 </ul>
