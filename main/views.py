@@ -11,6 +11,7 @@ from main.forms import AddVideoForm
 from .filters import VideoFilter
 
 def index(request):
+  videos = Video.objects.all()
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
 
@@ -20,6 +21,7 @@ def index(request):
   request.session['num_visits'] = num_visits + 1
 
   context = {
+    'videos': videos,
     'num_videos': num_videos,
     'num_tags': num_tags,
     'num_visits': num_visits,
