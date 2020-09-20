@@ -12,6 +12,7 @@ from .filters import VideoFilter
 
 def index(request):
   videos = Video.objects.all()
+  recent_videos = videos[:4]
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
 
@@ -25,6 +26,7 @@ def index(request):
     'num_videos': num_videos,
     'num_tags': num_tags,
     'num_visits': num_visits,
+    'recent_videos': recent_videos,
   }
 
   return render(request, 'index.html', context=context)
