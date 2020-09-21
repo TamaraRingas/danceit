@@ -12,7 +12,6 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .filters import VideoFilter
 
 def index(request):
   videos = Video.objects.all()
@@ -35,22 +34,14 @@ def index(request):
 
   return render(request, 'index.html', context=context)
 
+def video_search(request, query):
+  search_results = Video.objects.filter(name__icontains=query)
 
-def video(request, pk):
-  video = Video.objects.get(id=pk)  
-  videos = video.order_set.all()
-  num_videos = Video.objects.all().count()
+  context = {
+    'search_results': search_results
+  }
 
-  myFilter = VideoFilter(request.GET, queryset=videos)
-  videos = myFilter.qs 
-
-  context = { 'name':name,
-              'url':url,
-              'tags':tags,
-              'myFilter':myFilter, 
-              }
-  return render(request, 'main/video-list.html',context)
-
+  return render(request, 'main/video_list.html', context=context)
 
 def signup_view(request):
     form = UserCreationForm(request.POST)
