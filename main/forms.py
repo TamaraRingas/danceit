@@ -64,10 +64,18 @@ class AddTagFrom(forms.ModelForm):
         }
 
 
-# class AddTypeForm(forms.ModelForm):
-#     class Meta:
-#         model = Type
-#         fields = ('name', )
-#         labels = {
-#           'name': 'Category',
-#         }
+class AddTypeForm(forms.ModelForm):
+    def clean_name(self):
+        data = self.cleaned_data['name']
+    
+    def clean_tags(self):
+        data = self.cleaned_data['tags']
+
+    class Meta:
+        model = Type
+        fields = ('name','tags', )
+        labels = {
+          'name': 'Category',
+          'tags': 'Tags',
+        }
+
