@@ -23,7 +23,7 @@
           <li><a href="{% url 'tags' %}">All Tags</a></li>
           <li><a href="{% url 'types' %}">Tag Categories</a></li>
           {% if user.is_authenticated %}
-          <li>User: {{ user.get_username }}</li>
+          <li style="color: hsl(30, 100%, 50%)"> User: {{ user.get_username }} </li>
           <li><a href="{% url 'my-videos'%}">My Videos </a></li>
           <li><a href="{% url 'my-tags'%}">My Tags </a></li>
           <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
