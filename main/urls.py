@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('videos/', views.VideoListView.as_view(), name='videos'),
+#     path('videos/search', views.VideoSearchView.as_view(), name='video-search'),
     path('video/<int:pk>', views.VideoDetailView.as_view(), name='video-detail'),
     path('tags/', views.TagListView.as_view(), name='tags'),
     path('tag/<int:pk>', views.TagDetailView.as_view(), name='tag-detail'),
@@ -22,7 +23,8 @@ urlpatterns = [
          views.TagDelete.as_view(), name='tag_delete'),
     path('myvideos/', views.UserVideosListView.as_view(), name='my-videos'),
     path('mytags/', views.UserTagsListView.as_view(), name='my-tags'),
-    path('signup/', views.signup_view, name="signup")
+    path('signup/', views.signup_view, name="signup"),
+    
 ]
 
 
