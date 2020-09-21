@@ -8,6 +8,10 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
 from main.forms import AddVideoForm 
+from django.shortcuts import render
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render, redirect
 from .filters import VideoFilter
 
 def index(request):
@@ -47,6 +51,17 @@ def video(request, pk):
               }
   return render(request, 'main/video-list.html',context)
 
+
+def signup_view(request):
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+        form.save()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        return redirect('index')
+    return render(request, 'signup.html', {'form': form})
 
 class VideoListView(generic.ListView):
     model = Video
