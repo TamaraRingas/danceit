@@ -3,7 +3,7 @@
 {% block content %}
 <h1>DanceIT</h1>
 <p>Welcome to DanceIT, a Dance Video Information Management website developed by the University of Cape Town.</p>
-<h2>Recently Uploaded Videos</h2>
+<h2>Most Popular Videos</h2>
 {% for video in recent_videos %}
 <iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {% endfor %}
