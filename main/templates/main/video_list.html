@@ -3,11 +3,7 @@
 
 {% block content %}
 <h1>Videos List</h1>
-{% if search_results %}
-{% for video in search_results %}
-<iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-{% endfor %}
-{% endif %}
+
 <a href="{% url 'video_create'%}">Add Video</a>
 
 {% if video_list %}

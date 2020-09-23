@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse 
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
-from main.forms import AddVideoForm 
+from main.forms import AddVideoForm, SearchForm 
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -35,6 +35,8 @@ def index(request):
   return render(request, 'index.html', context=context)
 
 def video_search(request, query):
+  form = SearchForm(request.GET)
+  query = request.GET['query']
   search_results = Video.objects.filter(name__icontains=query)
 
   context = {
@@ -57,6 +59,11 @@ def signup_view(request):
 class VideoListView(generic.ListView):
     model = Video
     paginate_by = 10
+
+    def get_queryset(self):
+      query = self.request.GET['query']
+      return Video.objects.filter(name__icontains=query)
+    
     
 
 class VideoDetailView(generic.DetailView):

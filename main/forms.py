@@ -71,3 +71,9 @@ class AddTagFrom(forms.ModelForm):
 #         labels = {
 #           'name': 'Category',
 #         }
+
+
+class SearchForm(forms.Form):
+    query = forms.CharField(label='search videos')
+    # https://docs.djangoproject.com/en/dev/topics/forms/
+    
