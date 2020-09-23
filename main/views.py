@@ -61,8 +61,13 @@ class VideoListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-      query = self.request.GET['query']
-      return Video.objects.filter(name__icontains=query)
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Video.objects.filter(name__icontains=query)
+
+      else:
+        return Video.objects.all()
     
     
 
