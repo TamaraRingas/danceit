@@ -93,6 +93,15 @@ class TagDetailView(generic.DetailView):
 class TypeListView(generic.ListView):
   model = Type 
 
+  def get_queryset(self):
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Type.objects.filter(name__icontains=query)
+
+      else:
+        return Type.objects.all()
+
 class TypeDetailView(generic.DetailView):
   model = Type
 
