@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse 
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
-from main.forms import AddVideoForm, SearchForm 
+from main.forms import AddVideoForm
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
