@@ -1,13 +1,15 @@
 {% extends "base_generic.html" %}
+{% load filters %}
 
 {% block content %}
 <h1>Videos List</h1>
-Search Videos
-{{video.search}}
-<form method="get"> {{myFilter.form}}
-<button class="btn btn-primary" type="submit">
-Search </button>
+
+<form action="." method="get">
+  <label for="query">Search Videos</label>
+  <input type="text" name="query" id="query">
+  <input type="submit" value="Search">
 </form>
+
 <a href="{% url 'video_create'%}">Add Video</a>
 
 {% if video_list %}

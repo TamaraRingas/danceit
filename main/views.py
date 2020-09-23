@@ -7,15 +7,15 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse 
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
-from main.forms import AddVideoForm 
+from main.forms import AddVideoForm, SearchForm 
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .filters import VideoFilter
 
 def index(request):
   videos = Video.objects.all()
+  # recent_videos = Video.objects.all().order_by(-'date_created')
   recent_videos = videos[:4]
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
@@ -35,22 +35,16 @@ def index(request):
 
   return render(request, 'index.html', context=context)
 
+def video_search(request, query):
+  form = SearchForm(request.GET)
+  query = request.GET['query']
+  search_results = Video.objects.filter(name__icontains=query)
 
-def video(request, pk):
-  video = Video.objects.get(id=pk)  
-  videos = video.order_set.all()
-  num_videos = Video.objects.all().count()
+  context = {
+    'search_results': search_results
+  }
 
-  myFilter = VideoFilter(request.GET, queryset=videos)
-  videos = myFilter.qs 
-
-  context = { 'name':name,
-              'url':url,
-              'tags':tags,
-              'myFilter':myFilter, 
-              }
-  return render(request, 'main/video-list.html',context)
-
+  return render(request, 'main/video_list.html', context=context)
 
 def signup_view(request):
     form = UserCreationForm(request.POST)
@@ -66,6 +60,16 @@ def signup_view(request):
 class VideoListView(generic.ListView):
     model = Video
     paginate_by = 10
+
+    def get_queryset(self):
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Video.objects.filter(name__icontains=query)
+
+      else:
+        return Video.objects.all()
+    
     
 
 class VideoDetailView(generic.DetailView):
@@ -75,11 +79,29 @@ class TagListView(generic.ListView):
   model = Tag
   paginate_by = 10
 
+  def get_queryset(self):
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Tag.objects.filter(name__icontains=query)
+
+      else:
+        return Tag.objects.all()
+
 class TagDetailView(generic.DetailView):
   model = Tag
 
 class TypeListView(generic.ListView):
   model = Type 
+
+  def get_queryset(self):
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Type.objects.filter(name__icontains=query)
+
+      else:
+        return Type.objects.all()
 
 class TypeDetailView(generic.DetailView):
   model = Type

@@ -1,10 +1,13 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Tag Categories List</h1>
-
-<p><a href="{% url 'type_create'%}">Add Tag Category</a> </p>
-
+<h1>Tag Categories List</h1> 
+<form action="." method="get">
+  <label for="query">Search Tag Categories</label>
+  <input type="text" name="query" id="query">
+  <input type="submit" value="Search">
+</form>
+<a href="{% url 'type_create'%}">Add Tag Category</a>
 {% if type_list %}
 <ul>
   {% for type in type_list %}
