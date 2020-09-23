@@ -63,11 +63,3 @@ class AddTagFrom(forms.ModelForm):
             'types': 'Categories',
         }
 
-
-# class AddTypeForm(forms.ModelForm):
-#     class Meta:
-#         model = Type
-#         fields = ('name', )
-#         labels = {
-#           'name': 'Category',
-#         }
