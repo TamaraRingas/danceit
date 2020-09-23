@@ -78,6 +78,15 @@ class TagListView(generic.ListView):
   model = Tag
   paginate_by = 10
 
+  def get_queryset(self):
+      query = self.request.GET.get('query', None)
+
+      if query:
+        return Tag.objects.filter(name__icontains=query)
+
+      else:
+        return Tag.objects.all()
+
 class TagDetailView(generic.DetailView):
   model = Tag
 
