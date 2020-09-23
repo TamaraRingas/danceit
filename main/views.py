@@ -15,6 +15,7 @@ from django.shortcuts import render, redirect
 
 def index(request):
   videos = Video.objects.all()
+  # recent_videos = Video.objects.all().order_by(-'date_created')
   recent_videos = videos[:4]
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
