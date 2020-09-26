@@ -12,6 +12,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import requests 
 
 def index(request):
   videos = Video.objects.all()
