@@ -1,5 +1,11 @@
 {% extends "base_generic.html" %}
 {% load filters %}
 {% block content %}
-<h1> Search YouTube Page </h1>
+<h1> Search YouTube</h1>
+<h2>Results</h2>
+{% for video in videos%}
+<li>
+    <a href="{{ video.url }}">{{ video.title }}</a> 
+  </li>
+{% endfor%}
 {% endblock %}
