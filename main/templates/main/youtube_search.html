@@ -2,10 +2,14 @@
 {% load filters %}
 {% block content %}
 <h1> Search YouTube</h1>
+<form action="." method="POST">
+  <label for="query">Search YouTube</label>
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form> 
 <h2>Results</h2>
 {% for video in videos%}
-<li>
-    <a href="{{ video.url }}">{{ video.title }}</a> 
-  </li>
+<li>{{video.title}}
+<iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>
 {% endfor%}
 {% endblock %}
