@@ -4,6 +4,7 @@ from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+from django.conf import settings
 from django.urls import reverse 
 from django.urls import reverse_lazy
 from main.models import Video, Tag, Type
@@ -12,6 +13,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+import requests 
 
 def index(request):
   videos = Video.objects.all()
@@ -45,6 +47,18 @@ def video_search(request, query):
   }
 
   return render(request, 'main/video_list.html', context=context)
+
+def search_youtube(request):
+  search_url = 'https://www.googleapis.com/youtube/v3/search'
+  params = {
+    'part': 'snippet',
+    'q': 'dnd bard guide',
+    'key': settings.YOUTUBE_DATA_API_KEY,
+  }
+
+  r = requests.get(search_url, params=params)
+  print(r.text)
+  return render(request, 'main/youtube_search.html' )
 
 def signup_view(request):
     form = UserCreationForm(request.POST)
@@ -150,3 +164,4 @@ class UserTagsListView(LoginRequiredMixin, generic.ListView):
 
   def get_queryset(self):
       return Tag.objects.filter(user=self.request.user)
+
