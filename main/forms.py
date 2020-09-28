@@ -4,6 +4,7 @@ from django.db import models
 from django.core import validators 
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+import requests
 from main.models import Video, Tag, Type
 
 class AddVideoForm(ModelForm):
