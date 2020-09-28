@@ -13,6 +13,7 @@ from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from isodate import parse_duration
 import requests 
 
 def index(request):
@@ -50,15 +51,40 @@ def video_search(request, query):
 
 def search_youtube(request):
   search_url = 'https://www.googleapis.com/youtube/v3/search'
-  params = {
+  video_url = 'https://www.googleapis.com/youtube/v3/videos'
+  search_params = {
     'part': 'snippet',
     'q': 'dnd bard guide',
     'key': settings.YOUTUBE_DATA_API_KEY,
+    'type': 'video',
   }
+  video_ids = []
+  r = requests.get(search_url, params=search_params)
+  results = r.json()['items']
+  for result in results:
+    video_ids.append(result['id']['videoId'])
+  
+  video_params = {
+    'key': settings.YOUTUBE_DATA_API_KEY,
+    'part': 'snippet, contentDetails',
+    'id': ','.join(video_ids)
+  }
+  r = requests.get(video_url, params=video_params)
 
-  r = requests.get(search_url, params=params)
-  print(r.text)
-  return render(request, 'main/youtube_search.html' )
+  results = r.json()['items']
+  videos = []
+  for result in results:
+    video_data = {
+        'title': result['snippet']['title'],
+        'id': result['id'],
+        'duration': parse_duration(result['contentDetails']['duration']),
+        'thumbnail': result['snippet']['thumbnails']['high']['url']
+    }
+    videos.append(video_data)
+  context = {
+    'videos': videos
+  }
+  return render(request, 'main/youtube_search.html', context)
 
 def signup_view(request):
     form = UserCreationForm(request.POST)
