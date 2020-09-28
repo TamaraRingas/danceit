@@ -77,6 +77,7 @@ def search_youtube(request):
     video_data = {
         'title': result['snippet']['title'],
         'id': result['id'],
+        'url': f'https://www.youtube.com/watch?v={result["id"]}',
         'duration': parse_duration(result['contentDetails']['duration']),
         'thumbnail': result['snippet']['thumbnails']['high']['url']
     }
