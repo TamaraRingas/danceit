@@ -22,7 +22,6 @@
           <li><a href="{% url 'videos' %}">All Videos</a></li>
           <li><a href="{% url 'tags' %}">All Tags</a></li>
           <li><a href="{% url 'types' %}">Tag Categories</a></li>
-          <li><a href ="{% url 'youtube_search'%}">Search YouTube</a></li> 
           {% if user.is_authenticated %}
           <li> {{ user.get_username }} </li>
           <li><a href="{% url 'my-videos'%}">My Videos </a></li>

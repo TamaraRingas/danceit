@@ -50,7 +50,7 @@ def video_search(request, query):
   return render(request, 'main/video_list.html', context=context)
 
 def search_youtube(request):
-  videos = []
+  youtubevideos = []
   if request.method == 'POST': 
     search_url = 'https://www.googleapis.com/youtube/v3/search'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
@@ -59,6 +59,7 @@ def search_youtube(request):
       'q': request.POST['search'],
       'key': settings.YOUTUBE_DATA_API_KEY,
       'type': 'video',
+      'maxResults': 6
     }
     video_ids = []
     r = requests.get(search_url, params=search_params)
@@ -69,7 +70,7 @@ def search_youtube(request):
     video_params = {
       'key': settings.YOUTUBE_DATA_API_KEY,
       'part': 'snippet, contentDetails',
-      'id': ','.join(video_ids)
+      'id': ','.join(video_ids),
     }
     r = requests.get(video_url, params=video_params)
 
@@ -81,13 +82,14 @@ def search_youtube(request):
           'id': result['id'],
           'url': f'https://www.youtube.com/watch?v={result["id"]}',
           'duration': parse_duration(result['contentDetails']['duration']),
-          'thumbnail': result['snippet']['thumbnails']['high']['url']
+          'thumbnail': result['snippet']['thumbnails']['high']['url'],
+          'maxResults': 6
       }
-      videos.append(video_data)
+      youtubevideos.append(video_data)
   context = {
-    'videos': videos
+      'youtubevideos': youtubevideos
   }
-  return render(request, 'main/youtube_search.html', context)
+  return render(request, 'index.html', context)
 
 def signup_view(request):
     form = UserCreationForm(request.POST)
