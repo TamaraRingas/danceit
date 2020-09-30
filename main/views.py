@@ -49,7 +49,7 @@ def video_search(request, query):
 
   return render(request, 'main/video_list.html', context=context)
 
-def search_youtube(request):
+def search_youtube(request): #View methods for searching videos through YouTube API. 
   youtubevideos = []
   if request.method == 'POST': 
     search_url = 'https://www.googleapis.com/youtube/v3/search'
@@ -91,7 +91,7 @@ def search_youtube(request):
   }
   return render(request, 'index.html', context)
 
-def signup_view(request):
+def signup_view(request): #View method to use signup form and display it to the user.
     form = UserCreationForm(request.POST)
     if form.is_valid():
         form.save()
@@ -102,7 +102,8 @@ def signup_view(request):
         return redirect('index')
     return render(request, 'signup.html', {'form': form})
 
-class VideoListView(generic.ListView):
+class VideoListView(generic.ListView): # View class that gets and displays video list.
+                                       # Inherited from the ListView Class
     model = Video
     paginate_by = 10
 
@@ -117,10 +118,12 @@ class VideoListView(generic.ListView):
     
     
 
-class VideoDetailView(generic.DetailView):
+class VideoDetailView(generic.DetailView): # View class that displays Video Details. 
+                                           # Extended from the DetailView class.
     model = Video
 
-class TagListView(generic.ListView):
+class TagListView(generic.ListView): # View class that displays list of Tags. 
+                                       # Extended from the ListView class.
   model = Tag
   paginate_by = 10
 
@@ -133,10 +136,10 @@ class TagListView(generic.ListView):
       else:
         return Tag.objects.all()
 
-class TagDetailView(generic.DetailView):
-  model = Tag
+   model = Tag
 
-class TypeListView(generic.ListView):
+class TypeListView(generic.ListView): # View class that displays list of Tag Categories. 
+                                      # Extended from the ListView class.
   model = Type 
 
   def get_queryset(self):
@@ -148,38 +151,39 @@ class TypeListView(generic.ListView):
       else:
         return Type.objects.all()
 
-class TypeDetailView(generic.DetailView):
+class TypeDetailView(generic.DetailView): # View class that displays Tag Category Details. 
+                                          # Extended from the DetailView class.
   model = Type
 
-class VideoCreate(CreateView):
+class VideoCreate(CreateView): #View class to display VideoCreate Form, extended from CreateView class.
   model = Video
   fields = '__all__'
 
-class VideoUpdate(UpdateView):
+class VideoUpdate(UpdateView): #View class to display VideoUpdate Form, extended from UpdateView class.
   model = Video
   fields = '__all__'
 
-class VideoDelete(DeleteView):
+class VideoDelete(DeleteView): #View class to display VideoDelete Form, extended from DeleteView class.
   model = Video
   success_url = reverse_lazy('videos')
 
-class TagCreate(CreateView):
+class TagCreate(CreateView): #View class to display TagCreate Form, extended from CreateView class.
   model = Tag
   fields = '__all__'
 
-class TagUpdate(UpdateView):
+class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended from UpdateView class.
   model = Tag 
   fields = '__all__'
 
-class TagDelete(DeleteView):
+class TagDelete(DeleteView): #View class to display TagDelete Form, extended from DeleteView class.
   model = Tag
   success_url = reverse_lazy('tags')
 
-class TypeCreate(CreateView):
+class TypeCreate(CreateView): #View class to display TypeCreate Form, extended from CreateView class.
   model = Type
   fields = '__all__'
 
-class UserVideosListView(LoginRequiredMixin, generic.ListView):
+class UserVideosListView(LoginRequiredMixin, generic.ListView): # View class to display users VideoList, extended from ListView
   model = Video
   template_name = 'main/videos_by_user.html'
   paginate_by = 20
@@ -188,7 +192,7 @@ class UserVideosListView(LoginRequiredMixin, generic.ListView):
       return Video.objects.filter(user=self.request.user)
 
 
-class UserTagsListView(LoginRequiredMixin, generic.ListView):
+class UserTagsListView(LoginRequiredMixin, generic.ListView): # View class to display users TagList, extended from ListView
   model = Tag
   template_name = 'main/tags_by_user.html'
   paginate_by = 20
