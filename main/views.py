@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -8,12 +7,11 @@ from django.conf import settings
 from django.urls import reverse_lazy, reverse
 from main.models import Video, Tag, Type
 from main.forms import AddVideoForm
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from isodate import parse_duration
-import requests 
+from isodate import parse_duration #library imports
+import requests  # library imports
 
 def index(request):
   videos = Video.objects.all()
