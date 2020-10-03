@@ -11,6 +11,7 @@
 {% for video in tag.videos.all %}
 <a href="{{video.get_absolute_url}}">{{video.name}},</a>
 {% endfor %} </p>
-<a href="{% url 'tag_update' pk=tag.pk %}">Update Tag </a>
+<p><a href="{% url 'tag_share' pk=tag.pk %}">Share Tag </a></p>
+<p><a href="{% url 'tag_update' pk=tag.pk %}">Update Tag </a></p>
 <p><a href="{% url 'tag_delete' pk=tag.pk %}">Delete Tag </a></p>
 {% endblock %}

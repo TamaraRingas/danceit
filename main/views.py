@@ -86,7 +86,7 @@ def search_youtube(request): #View methods for searching videos through YouTube 
   context = {
       'youtubevideos': youtubevideos
   }
-  return render(request, 'index.html', context) #Display the results on the index page.
+  return render(request, 'index.html', context) #Display the results on the index page.  
 
 def signup_view(request): #View method to use signup form and display it to the user.
     form = UserCreationForm(request.POST) #Set the html form that will post user inputs.
@@ -161,6 +161,10 @@ class VideoUpdate(UpdateView): #View class to display VideoUpdate Form, extended
   model = Video
   fields = '__all__'
 
+class VideoShare(UpdateView):
+  model = Video
+  fields = 'user',
+
 class VideoDelete(DeleteView): #View class to display VideoDelete Form, extended from DeleteView class.
   model = Video
   success_url = reverse_lazy('videos') #If successful deletion, return to video list page.
@@ -172,6 +176,11 @@ class TagCreate(CreateView): #View class to display TagCreate Form, extended fro
 class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended from UpdateView class.
   model = Tag 
   fields = '__all__'
+
+
+class TagShare(UpdateView):
+  model = Tag
+  fields = 'user',
 
 class TagDelete(DeleteView): #View class to display TagDelete Form, extended from DeleteView class.
   model = Tag
