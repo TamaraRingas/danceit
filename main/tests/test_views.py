@@ -48,7 +48,7 @@ class VideoListViewTest(TestCase):
 class TagListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Create 13 tags for pagination tests
+        # Create 13 tags.
         number_of_tags = 13
 
         for tag_id in range(number_of_tags):
@@ -72,4 +72,29 @@ class TagListViewTest(TestCase):
         self.assertTemplateUsed(response, 'main/tag_list.html')
 
 
+class TypeListViewTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Create 13  categories.
+        number_of_types = 3
+
+        for type_id in range(number_of_types):
+            Video.objects.create(
+                name=f'TestType {type_id}'
+            )
+
+    def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/main/Tag Categories/')
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        # Use client from TestCase's derived class to simulate a GET request and get a response.
+        response = self.client.get(reverse('types'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_view_uses_correct_template(self):
+        # Use client from TestCase's derived class to simulate a GET request and get a response.
+        response = self.client.get(reverse('types'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'main/type_list.html')
   
