@@ -86,7 +86,7 @@ def search_youtube(request): #View methods for searching videos through YouTube 
   context = {
       'youtubevideos': youtubevideos
   }
-  return render(request, 'index.html', context) #Display the results on the index page.
+  return render(request, 'index.html', context) #Display the results on the index page.  
 
 def signup_view(request): #View method to use signup form and display it to the user.
     form = UserCreationForm(request.POST) #Set the html form that will post user inputs.
@@ -160,6 +160,10 @@ class VideoCreate(CreateView): #View class to display VideoCreate Form, extended
 class VideoUpdate(UpdateView): #View class to display VideoUpdate Form, extended from UpdateView class.
   model = Video
   fields = '__all__'
+
+class VideoShare(UpdateView):
+  model = Video
+  fields = 'user',
 
 class VideoDelete(DeleteView): #View class to display VideoDelete Form, extended from DeleteView class.
   model = Video

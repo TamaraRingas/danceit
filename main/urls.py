@@ -11,6 +11,7 @@ urlpatterns = [
     path('Tag Categories/', views.TypeListView.as_view(), name = 'types'),
     path('category/<int:pk>', views.TypeDetailView.as_view(), name='type-detail'),
     path('video/create/', views.VideoCreate.as_view(), name='video_create'),
+    path('video/<int:pk>/share/', views.VideoShare.as_view(), name='video_share'),
     path('video/<int:pk>/update/',
          views.VideoUpdate.as_view(), name='video_update'),
     path('video/<int:pk>/delete/',
