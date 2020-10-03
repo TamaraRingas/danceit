@@ -37,12 +37,12 @@ class AddVideoForm(ModelForm):
         }
 
     
-class AddTagFrom(forms.ModelForm):
+class AddTagForm(forms.ModelForm):
     def clean_name(self):
         data = self.cleaned_data['name']
 
         if len(data) > 100:
-            raise ValidationError(_('Invalid Video Name'))
+            raise ValidationError(_('Invalid Tag Name'))
 
         return data
      
