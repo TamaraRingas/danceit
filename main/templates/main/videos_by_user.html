@@ -3,11 +3,11 @@
 {% block content %}
     <h1>Followed Videos</h1>
     {% if video_list %}
-    <ul>
+    <p>
       {% for video in video_list%} 
-        <a href="{% url 'video-detail' video.pk %}">{{video.name}}</a>        
+        <li><a href="{% url 'video-detail' video.pk %}">{{video.name}}</a></li> 
       {% endfor %}
-    </ul>
+    </p>
     {% else %}
       <p>There are no followed videos.</p>
     {% endif %}       
