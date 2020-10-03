@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.contrib.auth.models import Permission, User
 from main.models import Video, Tag, Type
 
 class VideoListViewTest(TestCase):
