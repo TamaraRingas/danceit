@@ -119,8 +119,7 @@ class VideoDetailView(generic.DetailView): # View class that displays Video Deta
                                            # Extended from the DetailView class.
     model = Video  # Set the DB model to get data from.
 
-class TagListView(generic.ListView): # View class that displays list of Tags. 
-                                       # Extended from the ListView class.
+class TagListView(generic.ListView): # View class that displays list of Tags. Extended from the ListView class.
   model = Tag
   paginate_by = 10
 
