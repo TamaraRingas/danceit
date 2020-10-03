@@ -20,6 +20,7 @@ urlpatterns = [
     path('category/create/', views.TypeCreate.as_view(), name='type_create'),
     path('tag/<int:pk>/update/',
          views.TagUpdate.as_view(), name='tag_update'),
+    path('tag/<int:pk>/share/', views.TagShare.as_view(), name='tag_share'),
     path('tag/<int:pk>/delete/',
          views.TagDelete.as_view(), name='tag_delete'),
     path('myvideos/', views.UserVideosListView.as_view(), name='my-videos'),

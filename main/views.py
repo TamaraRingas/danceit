@@ -177,6 +177,11 @@ class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended fro
   model = Tag 
   fields = '__all__'
 
+
+class TagShare(UpdateView):
+  model = Tag
+  fields = 'user',
+
 class TagDelete(DeleteView): #View class to display TagDelete Form, extended from DeleteView class.
   model = Tag
   success_url = reverse_lazy('tags')
