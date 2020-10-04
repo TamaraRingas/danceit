@@ -137,4 +137,37 @@ class UserVideosListViewTest(TestCase):
         self.assertTemplateUsed(
             response, 'main/videos_by_user.html')
 
+    def test_only_saved_videoss_in_list(self):
+        login = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('my-videos'))
+
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check that initially we don't have any videos in list 
+        self.assertTrue('video_list' in response.context)
+        self.assertEqual(len(response.context['video_list']), 0)
+
+        videos = Video.objects,all()[:10]
+
+        for video in videos:
+          video.user = test_user1
+          video.save()
+
+        # Check that now we have saved videos in the list
+        response = self.client.get(reverse('my-videos'))
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTrue('video_list' in response.context)
+
+        # Confirm all videos belong to testuser1
+        for video in response.context['video_list']:
+            self.assertEqual(response.context['user'], video.user)
+            
     
