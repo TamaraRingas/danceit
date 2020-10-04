@@ -98,4 +98,43 @@ class TypeListViewTest(TestCase):
         response = self.client.get(reverse('types'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'main/type_list.html')
-  
+
+
+class UserVideosListViewTest(TestCase):
+  def setUp(self):
+    test_user1 = User.objects.create_user(
+        username='testuser1', password='1X<ISRUkw+tuK')
+    test_user2 = User.objects.create_user(
+        username='testuser2', password='2HJ1vRV0Z&3iD')
+    test_user1.save()
+    test_user2.save()
+
+    test_type = Type.objects.create(name='Dance Group')
+    test_tag = Tag.objects.create(name='Masaka Kids',type=test_type)
+    test_video = Video.objects.create(
+        name='Masaka Kids Africana Dancing Koti Ko', url='https://www.youtube.com/watch?v=_ynkzpwUEMQ',tags=test_tag,usser=test_user1)
+
+    #Create tags as a post-step
+    tag_objects_for_video - Tag.objects.all()
+    test_video.tags.set(tag_objects_for_video) # Direct assignment of many-to-many types not allowed. 
+    test_video.save()
+
+    def test_redirect_if_not_logged_in(self):
+        response = self.client.get(reverse('my-videos'))
+        self.assertRedirects(
+            response, '/accounts/login/?next=/catalog/myvideo/')
+
+    def test_logged_in_uses_correct_template(self):
+        login = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('my-videos'))
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct template
+        self.assertTemplateUsed(
+            response, 'main/videos_by_user.html')
+
+    
