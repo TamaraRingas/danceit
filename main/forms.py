@@ -17,7 +17,7 @@ class AddVideoForm(ModelForm):
       
       return data
 
-    def clean_url(self): #COverride clean_data method for the data in each field.
+    def clean_url(self): #Override clean_data method for the data in each field.
         url_data = self.cleaned_data['url'] 
         #
         return url_data
