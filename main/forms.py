@@ -48,12 +48,12 @@ class AddTagForm(forms.ModelForm):
     def clean_url(self):
         video_data = self.cleaned_data['videos']
         #
-        return url_data
+        return video_data
 
     def clean_tags(self):
         type_data = self.cleaned_data['types']
         
-        return tag_data
+        return type_data
     class Meta:
         model = Tag
         fields = ('name', 'videos', 'types', )
@@ -67,9 +67,11 @@ class AddTagForm(forms.ModelForm):
 class AddTypeForm(forms.ModelForm):
     def clean_name(self):
         data = self.cleaned_data['name']
+        return data
     
     def clean_tags(self):
-        data = self.cleaned_data['tags']
+        tag_data = self.cleaned_data['tags']
+        return tag_data
 
     class Meta:
         model = Type
