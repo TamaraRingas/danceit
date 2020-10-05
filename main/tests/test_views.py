@@ -70,6 +70,32 @@ class VideoDetailViewTest(TestCase):
       self.assertEqual(response.status_code, 200)
       self.assertTemplateUsed(response, 'main/video_detail.html') 
 
+class TagDetailViewTest(TestCase): 
+  @classmethod
+  def setUpTestData(cls):
+    tag = Tag.objects.create(name='test') 
+    video = Video.objects.create(name='TestVideo', url='https:/youtube.com/watch?v=testvideo')
+    type1 = Type.objects.create(name='Dancer')
+    type2 = Type.objects.create(name='Dance Group')
+    tag.types.add(Type.objects.get(id=1))
+    tag.types.add(Type.objects.get(id=2))
+
+  def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/main/tag/1')
+        self.assertEqual(response.status_code, 200)
+
+  def test_view_url_accessible_by_name(self):
+      # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(reverse('tag-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+
+  def test_view_uses_correct_template(self):
+        # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(
+          reverse('tag-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+      self.assertTemplateUsed(response, 'main/tag_detail.html') 
+
 class TagListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -123,6 +149,31 @@ class TypeListViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'main/type_list.html')
 
+
+class TypeDetailViewTest(TestCase):
+  @classmethod
+  def setUpTestData(cls):
+    type = Type.objects.create(name='Test Category')
+    tag1 = Tag.objects.create(name='Dancer')
+    tag2 = Tag.objects.create(name='Dance Group')
+    type.tags.add(Tag.objects.get(id=1))
+    type.tags.add(Tag.objects.get(id=2))
+
+  def test_view_url_exists_at_desired_location(self):
+      response = self.client.get('/main/category/1')
+      self.assertEqual(response.status_code, 200)
+
+  def test_view_url_accessible_by_name(self):
+      # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(reverse('type-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+
+  def test_view_uses_correct_template(self):
+      # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(
+          reverse('type-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+      self.assertTemplateUsed(response, 'main/type_detail.html')
 
 class UserVideosListViewTest(TestCase):
   def setUp(self):

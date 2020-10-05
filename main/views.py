@@ -177,8 +177,7 @@ class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended fro
   model = Tag 
   fields = '__all__'
 
-
-class TagShare(UpdateView):
+class TagShare(UpdateView): #View class to select which user to share a video with, extended from Updateview class.
   model = Tag
   fields = 'user',
 
