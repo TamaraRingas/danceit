@@ -15,8 +15,6 @@ import requests  # library imports
 
 def index(request):
   videos = Video.objects.all()
-  # recent_videos = Video.objects.all().order_by(-'date_created')
-  recent_videos = videos[:4]
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
 
@@ -30,7 +28,6 @@ def index(request):
     'num_videos': num_videos,
     'num_tags': num_tags,
     'num_visits': num_visits,
-    'recent_videos': recent_videos,
   }
 
   return render(request, 'index.html', context=context)
@@ -65,7 +62,8 @@ def search_youtube(request): #View methods for searching videos through YouTube 
       video_ids.append(result['id']['videoId']) #From json results, only take out videoIds
     
     video_params = {
-      'key': settings.YOUTUBE_DATA_API_KEY,
+        # Api key stored in settings for security.
+        'key': settings.YOUTUBE_DATA_API_KEY,
       'part': 'snippet, contentDetails',
       'id': ','.join(video_ids), 
     }
@@ -161,6 +159,7 @@ class VideoUpdate(UpdateView): #View class to display VideoUpdate Form, extended
   model = Video
   fields = '__all__'
 
+# View class to select which user to share a video with, extended from Updateview class.
 class VideoShare(UpdateView):
   model = Video
   fields = 'user',
@@ -177,7 +176,7 @@ class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended fro
   model = Tag 
   fields = '__all__'
 
-class TagShare(UpdateView): #View class to select which user to share a video with, extended from Updateview class.
+class TagShare(UpdateView): #View class to select which user to share a tag with, extended from Updateview class.
   model = Tag
   fields = 'user',
 
@@ -196,7 +195,6 @@ class UserVideosListView(LoginRequiredMixin, generic.ListView): # View class to 
 
   def get_queryset(self): #Only display videos that the user has actually saved.
       return Video.objects.filter(user=self.request.user)
-
 
 class UserTagsListView(LoginRequiredMixin, generic.ListView): # View class to display users TagList, extended from ListView
   model = Tag
