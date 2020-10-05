@@ -120,9 +120,9 @@ class UserVideosListViewTest(TestCase):
     test_video.save()
 
     def test_redirect_if_not_logged_in(self):
-        response = self.client.get(reverse('my-videos'))
+        response = self.client.get(reverse('my-videos')) #Try to access in to the my-videos page
         self.assertRedirects(
-            response, '/accounts/login/?next=/catalog/myvideo/')
+            response, '/accounts/login/?next=/main/myvideos/') #Check if it redirects user that aren't logged in.
 
     def test_logged_in_uses_correct_template(self):
         login = self.client.login(
@@ -133,7 +133,7 @@ class UserVideosListViewTest(TestCase):
         # Check that we got a response "success"
         self.assertEqual(response.status_code, 200)
 
-        # Check we used correct template
+        # Check we used correct display template
         self.assertTemplateUsed(
             response, 'main/videos_by_user.html')
 
@@ -170,4 +170,82 @@ class UserVideosListViewTest(TestCase):
         for video in response.context['video_list']:
             self.assertEqual(response.context['user'], video.user)
             
+
+class UserTagsListViewTest(TestCase):
+  def setUp(self):
+    test_user1 = User.objects.create_user(
+        username='testuser1', password='1X<ISRUkw+tuK')
+    test_user2 = User.objects.create_user(
+        username='testuser2', password='2HJ1vRV0Z&3iD')
+    test_user1.save()
+    test_user2.save()
+
+    test_type = Type.objects.create(name='Dance Group')
+    test_tag = Tag.objects.create(name='Masaka Kids', type=test_type)
+    test_video = Video.objects.create(
+        name='Masaka Kids Africana Dancing Koti Ko', url='https://www.youtube.com/watch?v=_ynkzpwUEMQ', tags=test_tag, usser=test_user1)
+    
+    #Create videos as a post-step
+    video_objects_for_tag = Video.objects.all()
+    # Direct assignment of many-to-many types not allowed.
+    test_tag.videos.set(video_objects_for_tag)
+    test_tag.save()
+
+    #Create additional types as a post-step
+    type_objects_for_tag = Type.objects.all()
+    # Direct assignment of many-to-many types not allowed.
+    test_tag.types.set(type_objects_for_tag)
+    test_tag.save()
+
+    def test_redirect_if_not_logged_in(self):
+        # Try to access in to the my-tags page
+        response = self.client.get(reverse('my-tags'))
+        self.assertRedirects(
+            response, '/accounts/login/?next=/main/mytags/')  # Check if it redirects users that aren't logged in.
+
+    def test_logged_in_uses_correct_template(self):
+        login = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('my-videos'))
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check we used correct display template
+        self.assertTemplateUsed(
+            response, 'main/tags_by_user.html')
+
+    def test_only_saved_videoss_in_list(self):
+        login = self.client.login(
+            username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('my-tags'))
+
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Check that initially we don't have any tags in list
+        self.assertTrue('tag_list' in response.context)
+        self.assertEqual(len(response.context['tag_list']), 0)
+
+        tags = Tag.objects, all()[:10]
+
+        for tag in tags:
+          tag.user = test_user1
+          tag.save()
+
+        # Check that now we have saved videos in the list
+        response = self.client.get(reverse('my-tags'))
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        self.assertTrue('tag_list' in response.context)
+
+        # Confirm all tags displayed belong to testuser1
+        for tag in response.context['tag_list']:
+            self.assertEqual(response.context['user'], tag.user)
     
