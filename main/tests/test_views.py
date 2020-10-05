@@ -45,6 +45,30 @@ class VideoListViewTest(TestCase):
         self.assertTrue(response.context['is_paginated'] == True)
         self.assertTrue(len(response.context['video_list']) == 3)
 
+class VideoDetailViewTest(TestCase): 
+  @classmethod
+  def setUpTestData(cls):
+    video = Video.objects.create(name='TestVideo', url='https:/youtube.com/watch?v=testvideo')
+    tag1 = Tag.objects.create(name='test')
+    tag2 = Tag.objects.create(name='tag')
+    video.tags.add(Tag.objects.get(id=1))
+    video.tags.add(Tag.objects.get(id=2))
+
+  def test_view_url_exists_at_desired_location(self):
+        response = self.client.get('/main/video/1')
+        self.assertEqual(response.status_code, 200)
+
+  def test_view_url_accessible_by_name(self):
+      # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(reverse('video-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+
+  def test_view_uses_correct_template(self):
+        # Use client from TestCase's derived class to simulate a GET request and get a response.
+      response = self.client.get(
+          reverse('video-detail', kwargs={'pk': 1}))
+      self.assertEqual(response.status_code, 200)
+      self.assertTemplateUsed(response, 'main/video_detail.html') 
 
 class TagListViewTest(TestCase):
     @classmethod
@@ -115,7 +139,7 @@ class UserVideosListViewTest(TestCase):
         name='Masaka Kids Africana Dancing Koti Ko', url='https://www.youtube.com/watch?v=_ynkzpwUEMQ',tags=test_tag,usser=test_user1)
 
     #Create tags as a post-step
-    tag_objects_for_video - Tag.objects.all()
+    tag_objects_for_video = Tag.objects.all()
     test_video.tags.set(tag_objects_for_video) # Direct assignment of many-to-many types not allowed. 
     test_video.save()
 
