@@ -30,7 +30,7 @@ class TagModelTest(TestCase):
   def test_get_absolute_url(self):
       tag = Tag.objects.get(id=1)
       # This will also fail if the urlconf is not defined.
-      self.assertEquals(tag.get_absolute_url(), '/main/tag/1')
+      self.assertEquals(tag.get_absolute_url(), '/main/tag/1') #Check that url for tag is correct.
 
 class TypeModelTest(TestCase):
   @classmethod
@@ -60,7 +60,7 @@ class TypeModelTest(TestCase):
   def test_get_absolute_url(self):
       type = Type.objects.get(id=1)
       # This will also fail if the urlconf is not defined.
-      self.assertEquals(type.get_absolute_url(), '/main/category/1')
+      self.assertEquals(type.get_absolute_url(), '/main/category/1') #Check that url for category is correct.
 
 
 class VideoModelTest(TestCase):
@@ -97,4 +97,5 @@ class VideoModelTest(TestCase):
   def test_get_absolute_url(self):
       video = Video.objects.get(id=1)
       # This will also fail if the urlconf is not defined.
+      # Check that url for video is correct.
       self.assertEquals(video.get_absolute_url(), '/main/video/1')
