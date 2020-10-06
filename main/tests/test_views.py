@@ -323,4 +323,14 @@ class UserTagsListViewTest(TestCase):
         # Confirm all tags displayed belong to testuser1
         for tag in response.context['tag_list']:
             self.assertEqual(response.context['user'], tag.user)
-    
+
+
+class LogInTest(TestCase):
+  def set_up_data(self):
+    self.credentials = {
+        'username': 'testuser',
+        'password': 'secret'
+    }
+    User.objects.create_user(**self.credentials)
+    response = self.client.post('/login/', self.credentials, follow=True)
+    self.assertTrue(response.context['user'].is_active)

@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.contrib.auth.models import User
 from main.forms import *
 
 class AddVideoFormTest(TestCase):
@@ -45,3 +46,5 @@ class AddTypeFormTest(TestCase):
     form = AddTypeForm()
     self.assertTrue(form.fields['tags'].label ==
                     None or form.fields['tags'].label == 'Tags')
+
+
