@@ -7,9 +7,7 @@ class Video(models.Model):
 
   name = models.CharField(max_length=100)
   url = models.URLField()
-  #date_created = models.DateTimeField(default=timezone.now) 
   """Local time used because users will be all over the world"""
-  # search = models.CharField(max_length=20, null=True, blank=True) 
   tags = models.ManyToManyField("Tag", blank=True)
   user = models.ForeignKey(
       User, on_delete=models.SET_NULL, null=True, blank=True)
@@ -32,7 +30,7 @@ class Tag(models.Model):
   """Represents a Video Tag, derived from the Model class."""
 
   name = models.CharField(max_length=20)
-  #date_created = models.DateTimeField(default=timezone.now)
+  date_created = models.DateTimeField(default=timezone.now)
 
   videos = models.ManyToManyField(Video)
   types = models.ManyToManyField("Type")
