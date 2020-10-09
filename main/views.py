@@ -153,11 +153,11 @@ class TypeDetailView(generic.DetailView): # View class that displays Tag Categor
 
 class VideoCreate(CreateView): #View class to display VideoCreate Form, extended from CreateView class.
   model = Video
-  fields = '__all__'
+  fields = ['name', 'url', 'tags', ]
 
 class VideoUpdate(UpdateView): #View class to display VideoUpdate Form, extended from UpdateView class.
   model = Video
-  fields = '__all__'
+  fields = ['name', 'url', 'tags', ]
 
 # View class to select which user to share a video with, extended from Updateview class.
 class VideoShare(UpdateView):
@@ -170,11 +170,11 @@ class VideoDelete(DeleteView): #View class to display VideoDelete Form, extended
 
 class TagCreate(CreateView): #View class to display TagCreate Form, extended from CreateView class.
   model = Tag
-  fields = '__all__'
+  fields = ['name', 'videos', 'types', ]
 
 class TagUpdate(UpdateView): #View class to display TagUpdate Form, extended from UpdateView class.
   model = Tag 
-  fields = '__all__'
+  fields = ['name', 'videos', 'types', ] 
 
 class TagShare(UpdateView): #View class to select which user to share a tag with, extended from Updateview class.
   model = Tag
