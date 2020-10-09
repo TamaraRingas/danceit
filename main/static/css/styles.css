@@ -7,8 +7,12 @@ p, a, li, h1, h2, h3, h4, h5 {
   color: white;
 }
 
+a {
+  color: hsl(30, 100%, 50%)
+}
+
 a:hover {
-  color: hsl(30, 100%, 50%); 
+  color: hsl(20, 100%, 50%); 
 }
 
 ul {
