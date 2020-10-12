@@ -32,6 +32,9 @@ def index(request):
 
   return render(request, 'index.html', context=context)
 
+def faq_view(request):
+  return render(request, 'faq.html')
+
 def video_search(request, query):
   form = SearchForm(request.GET) #Set the form and get inputs from user
   query = request.GET['query']
@@ -203,3 +206,6 @@ class UserTagsListView(LoginRequiredMixin, generic.ListView): # View class to di
 
   def get_queryset(self): #Filter all tags and only display the users saved tags.
       return Tag.objects.filter(user=self.request.user)
+
+
+  
