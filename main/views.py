@@ -18,8 +18,7 @@ def index(request):
   num_videos = Video.objects.all().count()
   num_tags = Tag.objects.all().count()
 
-  # """Number of visits to this view, as counted in the session variable.
-  #    This will be used in final system to get users favourite videos """
+  # Number of visits to this view, as counted in the session variable.
   num_visits = request.session.get('num_visits', 0)
   request.session['num_visits'] = num_visits + 1
 
@@ -121,7 +120,7 @@ class VideoDetailView(generic.DetailView): # View class that displays Video Deta
     model = Video  # Set the DB model to get data from.
 
 class TagListView(generic.ListView): # View class that displays list of Tags. Extended from the ListView class.
-  model = Tag
+  model = Tag #Get data from the Tag model.
   paginate_by = 10
 
   def get_queryset(self):  # Filter results by input query.
