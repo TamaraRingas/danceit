@@ -1,8 +1,19 @@
 {% extends "base_generic.html" %}
-
+{% load filters %}
 {% block content %}
-<h1>DanceIT Home</h1>
-<p>Welcome to DanceIT, a Dance Video Information Management website developed by the University of Cape Town.</p>
-<h2>Content</h2>
-<p> Here will be some videos and information.</p>
+<h1>DanceIT - Dance Video Information Management WebApp</h1>
+<p></p>
+<div><h2> Search YouTube Videos</h2>
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="search">
+  <input type="submit" value="Search">
+</form></div>
+<br></br>
+<div>
+{% for video in youtubevideos %}
+{% comment %} {{video.title}} {% endcomment %}
+<iframe width="560" height="315" src= "{{video.url|embedurl}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endfor%}
+</div>
 {% endblock %}

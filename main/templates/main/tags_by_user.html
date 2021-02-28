@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    <h1>Followed Tags</h1>
+    {% if tag_list %}
+    <p>
+      {% for tag in tag_list%} 
+        <li><a href="{% url 'tag-detail' tag.pk %}">{{tag.name}}</a></li>       
+      {% endfor %}
+    </p>
+    {% else %}
+      <p>There are no followed tags.</p>
+    {% endif %}       
+{% endblock %}

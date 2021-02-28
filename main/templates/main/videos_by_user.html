@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Followed Videos</h1>
+    {% if video_list %}
+    <p>
+      {% for video in video_list%} 
+        <li><a href="{% url 'video-detail' video.pk %}">{{video.name}}</a></li> 
+      {% endfor %}
+    </p>
+    {% else %}
+      <p>There are no followed videos.</p>
+    {% endif %}       
+{% endblock %}

@@ -6,11 +6,11 @@ class Video(models.Model):
   """Represents a Youtube video uploaded to our database, derived from the Model class."""
 
   name = models.CharField(max_length=100)
-  url = models.CharField(max_length=100)
-  date_created = models.DateTimeField(default=timezone.now) 
+  url = models.URLField()
   """Local time used because users will be all over the world"""
-
   tags = models.ManyToManyField("Tag", blank=True)
+  user = models.ForeignKey(
+      User, on_delete=models.SET_NULL, null=True, blank=True)
 
   class Meta:
       ordering = ['name']
@@ -33,6 +33,10 @@ class Tag(models.Model):
   date_created = models.DateTimeField(default=timezone.now)
 
   videos = models.ManyToManyField(Video)
+  types = models.ManyToManyField("Type")
+  user = models.ForeignKey(
+      User, on_delete=models.SET_NULL, null=True, blank=True)
+  
   class Meta:
       ordering = ['name']
 
@@ -44,4 +48,20 @@ class Tag(models.Model):
     """String representation of the Tag object."""
     return self.name
 
+class Type(models.Model):
+  """ Categories of Tags """
+  name = models.CharField(max_length=20)
 
+  tags = models.ManyToManyField(Tag)
+
+  class Meta:
+      ordering = ['name']
+
+  def get_absolute_url(self):
+    """Returns the url to access a particular Tag."""
+    return reverse('type-detail', args=[str(self.id)])
+
+  def __str__(self):
+    """String representation of the Type object."""
+    return self.name
+  

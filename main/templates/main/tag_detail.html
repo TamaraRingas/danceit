@@ -1,10 +1,17 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Tag Details</h1>
+<h1>{{ tag.name }} </h1>
 
-<p><strong>Tag:</strong> {{ tag.name }}</p>
-<p><strong>Date Uploaded:</strong> {{ tag.date_created }}</p>
-<p><strong>Linked Videos:</strong> {{ tag.videos.all|join:", " }}</p>
-
+<p><strong>Tag Categories:</strong>
+{% for type in tag.types.all %}
+<a href="{{type.get_absolute_url}}">{{type.name}},</a>
+{% endfor %}</p>
+<p><strong>Linked Videos:</strong>
+{% for video in tag.videos.all %}
+<a href="{{video.get_absolute_url}}">{{video.name}},</a>
+{% endfor %} </p>
+<p><a href="{% url 'tag_share' pk=tag.pk %}">Share/Save Tag </a></p>
+<p><a href="{% url 'tag_update' pk=tag.pk %}">Update Tag </a></p>
+<p><a href="{% url 'tag_delete' pk=tag.pk %}">Delete Tag </a></p>
 {% endblock %}

@@ -1,12 +1,20 @@
 {% extends "base_generic.html" %}
+{% load filters %}
 
 {% block content %}
 <h1>Videos List</h1>
+<form action="." method="get">
+  <label for="query">Search Videos</label>
+  <input type="text" name="query" id="query">
+  <input type="submit" value="Search">
+</form>
+<a href="{% url 'video_create'%}">Add Video</a>
+
 {% if video_list %}
 <ul>
   {% for video in video_list %}
   <li>
-    <a href="{{ video.get_absolute_url }}">{{ video.name }}</a> ({{video.date_created}})
+    <a href="{{ video.get_absolute_url }}">{{ video.name }}</a> 
   </li>
   {% endfor %}
 </ul>

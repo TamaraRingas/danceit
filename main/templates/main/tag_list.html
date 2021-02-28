@@ -2,11 +2,17 @@
 
 {% block content %}
 <h1>Tags List</h1>
+<form action="." method="get">
+  <label for="query">Search Tags</label>
+  <input type="text" name="query" id="query">
+  <input type="submit" value="Search">
+</form>
+<a href="{% url 'tag_create'%}">Add Tag</a>
 {% if tag_list %}
 <ul>
   {% for tag in tag_list %}
   <li>
-    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a> ({{tag.date_created}})
+    <a href="{{ tag.get_absolute_url }}">{{ tag.name }} </a> ({{tag.types.all|join:", "}})
   </li>
   {% endfor %}
 </ul>
