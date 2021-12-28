@@ -122,5 +122,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #LOGIN_REDIRECT_URL = '/'
 
-YOUTUBE_DATA_API_KEY = ''
+YOUTUBE_DATA_API_KEY = '' #Insert API Key here.
 
